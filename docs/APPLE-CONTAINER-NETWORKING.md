@@ -66,6 +66,7 @@ ifconfig bridge100
 | `curl: (28) Connection timed out` | IP forwarding disabled | `sudo sysctl -w net.inet.ip.forwarding=1` |
 | HTTP works, HTTPS times out | IPv6 DNS resolution | Add `NODE_OPTIONS=--dns-result-order=ipv4first` |
 | `Could not resolve host` | DNS not forwarded | Check bridge100 exists, verify pfctl NAT rules |
+| Build fails: `deb.debian.org` timeout / Unable to locate package | Builder has no working DNS | Before build: `container exec buildkit /bin/sh -c 'echo "nameserver 8.8.8.8" > /etc/resolv.conf'` then `./container/build.sh` |
 | Container hangs after output | Missing `process.exit(0)` in agent-runner | Rebuild container image |
 
 ## How It Works
